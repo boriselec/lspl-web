@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>LSPL DEMO</title>
+
+    <link type="text/css" rel="stylesheet" href="http://qtip2.com/v/stable/jquery.qtip.css"/>
+    <style media="screen" type="text/css">
+        .word {
+            outline: none !important;
+            border: 1px solid transparent;
+            font-size: large;
+            margin-left: 5px;
+        }
+
+        .word:hover {
+            outline: none !important;
+            border: 1px solid red;
+            font-size: large;
+        }
+
+        .punctuation {
+            font-size: large;
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="http://qtip2.com/v/stable/jquery.qtip.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[title]').qtip();
+        });
+
+    </script>
+
+</head>
+<body>
+
+    <div id="content" style="font-size: 0">
+        <span class="word" title="СУЩ">Мама</span>
+        <span class="word" title="ГЛ">мыла</span>
+        <span class="word" title="СУЩ">раму</span>
+        <span class="punctuation">.</span>
+        <span class="word" title="СУЩ">Мама</span>
+        <span class="word" title="ГЛ">мыла</span>
+        <span class="word" title="СУЩ">раму</span>
+        <span class="punctuation">.</span>
+    </div>
+
+</body>
+</html>
