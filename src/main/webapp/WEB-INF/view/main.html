@@ -13,6 +13,7 @@
             border: 1px solid transparent;
             font-size: large;
             margin-left: 5px;
+            float: left;
         }
 
         .word:hover {
@@ -24,29 +25,68 @@
         .punctuation {
             font-size: large;
         }
+
+        #analyzed {
+            max-width: 800px;
+        }
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="http://qtip2.com/v/stable/jquery.qtip.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('[title]').qtip();
+
+            $('#analyze').click(function () {
+                $.ajax({
+                    type: 'post', url: '/analyze',
+                    data: {
+                        text: $('#text').val()
+                    },
+                    success: function (data) {
+                        setData(data);
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                })
+            });
         });
 
+        function setData(data) {
+            var $analyzed = $('#analyzed');
+            $analyzed.empty();
+
+            for (var wordkey in data.wordViewMap) {
+                word = data.wordViewMap[wordkey];
+
+                var title = '';
+                for (var formkey in word.wordFormViews) {
+                    title += word.wordFormViews[formkey].base;
+                    title += ' ';
+                    title += word.wordFormViews[formkey].speechPart;
+                    title += '\n';
+                }
+
+                var $span = $('<span>', {
+                    'class': 'word',
+                    'title': title,
+                    'text': word.text
+                });
+                $analyzed.append($span);
+            }
+        }
     </script>
 
 </head>
 <body>
 
-    <div id="content" style="font-size: 0">
-        <span class="word" title="СУЩ">Мама</span>
-        <span class="word" title="ГЛ">мыла</span>
-        <span class="word" title="СУЩ">раму</span>
-        <span class="punctuation">.</span>
-        <span class="word" title="СУЩ">Мама</span>
-        <span class="word" title="ГЛ">мыла</span>
-        <span class="word" title="СУЩ">раму</span>
-        <span class="punctuation">.</span>
-    </div>
+    <div id="analyzed" style="font-size: 0"></div>
+    <br/>
+    <div style="clear: left"></div>
+    <textarea id="text">Мама мыла раму.</textarea>
+    <br/>
+    <button id="analyze">Анализировать</button>
+
 
 </body>
 </html>
