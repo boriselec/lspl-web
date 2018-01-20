@@ -1,6 +1,6 @@
 package com.boriselec.lspl.controllers;
 
-import com.boriselec.lspl.TextView;
+import com.boriselec.lspl.view.TextView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

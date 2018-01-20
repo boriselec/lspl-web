@@ -1,4 +1,4 @@
-package com.boriselec.lspl;
+package com.boriselec.lspl.view;
 
 import ru.lspl.text.Word;
 
