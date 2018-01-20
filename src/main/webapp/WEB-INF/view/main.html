@@ -38,7 +38,7 @@
 
             $('#analyze').click(function () {
                 $.ajax({
-                    type: 'post', url: '/analyze',
+                    type: 'post', url: 'api/analyze',
                     data: {
                         text: $('#text').val()
                     },

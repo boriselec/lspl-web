@@ -13,12 +13,12 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    @RequestMapping(value="/main", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
+    @RequestMapping(value="/", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public String singePage(){
         return "main";
     }
 
-    @RequestMapping(value = "/analyze", method = RequestMethod.POST)
+    @RequestMapping(value = "api/analyze", method = RequestMethod.POST)
     public @ResponseBody
     TextView analyze(@RequestParam(value = "text") String text) {
         List<Word> words = Text.create(text).getWords();
