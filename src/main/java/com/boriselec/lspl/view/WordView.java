@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class WordView {
-    public String text;
-    public Collection<WordFormView> wordFormViews;
+    public final String text;
+    public final Collection<WordFormView> wordFormViews;
 
     public WordView(Word word) {
         this.text = word.form;

@@ -29,6 +29,14 @@
         #analyzed {
             max-width: 800px;
         }
+
+        .matches {
+            background-color: lightgreen;
+        }
+
+        .no-matches {
+            background-color: lightpink;
+        }
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="http://qtip2.com/v/stable/jquery.qtip.js"></script>
@@ -40,7 +48,8 @@
                 $.ajax({
                     type: 'post', url: 'api/analyze',
                     data: {
-                        text: $('#text').val()
+                        text: $('#text').val(),
+                        pattern: $('#pattern').val()
                     },
                     success: function (data) {
                         setData(data);
@@ -74,6 +83,11 @@
                 });
                 $analyzed.append($span);
             }
+
+            var $matches = $("#matches");
+            $matches.text('hasAnyMatch: ' + data.hasAnyMatches);
+            $matches.removeClass();
+            $matches.addClass(data.hasAnyMatches ? 'matches' : 'no-matches');
         }
     </script>
 
@@ -81,10 +95,17 @@
 <body>
 
     <div id="analyzed" style="font-size: 0"></div>
-    <br/>
     <div style="clear: left"></div>
-    <textarea id="text">Мама мыла раму.</textarea>
+
     <br/>
+    <span id="matches"></span>
+    <br/>
+    <br/>
+
+    <textarea id="text">Мама мыла раму.</textarea>
+    <textarea id="pattern">N V N</textarea>
+    <br/>
+
     <button id="analyze">Анализировать</button>
 
 

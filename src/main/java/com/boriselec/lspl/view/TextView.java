@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public class TextView {
-    public Map<Integer, WordView> wordViewMap;
+    public final Map<Integer, WordView> wordViewMap;
+    public final boolean hasAnyMatches;
 
-    public TextView(List<Word> words) {
+    public TextView(List<Word> words, boolean hasAnyMatches) {
+        this.hasAnyMatches = hasAnyMatches;
         wordViewMap = new HashMap<>();
         words.forEach(this::add);
     }
